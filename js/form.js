@@ -33,9 +33,8 @@ const minPrice = {
 
 const setMinPrice = () => {
   const value = minPrice[typeFlat.value];
-
-  price.setAttribute('min', value);
-  price.setAttribute('placeholder', value);
+  price.min = value;
+  price.placeholder = value;
 };
 
 // заезд - выезд
