@@ -62,6 +62,17 @@ const checkNumberOfGuestsAndRooms = () => {
   }
 };
 
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+
+  const isValid = pristine.validate();
+  if (isValid) {
+    console.log('Можно отправлять');
+  } else {
+    console.log('Форма невалидна');
+  }
+};
+
 // навешиваем обработчики
 numberRooms.addEventListener('change', () => {
   checkNumberOfGuestsAndRooms();
@@ -89,15 +100,6 @@ const pristine = new pristine(form, {
   errorTextClass: 'setup-wizard-form__error-text',
 });
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-
-  const isValid = pristine.validate();
-  if (isValid) {
-    console.log('Можно отправлять');
-  } else {
-    console.log('Форма невалидна');
-  }
-});
+form.addEventListener('submit', onFormSubmit);
 
 export {activate, deactivate};
