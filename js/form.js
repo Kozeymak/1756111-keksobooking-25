@@ -1,23 +1,23 @@
-const formTemplate = document.querySelector('.ad-form');
+const form = document.querySelector('.ad-form');
 const mapFiltersTemplate = document.querySelector('.map__filters');
-const typeFlat = formTemplate.querySelector('select[name=type]');
-const pricePerNight = formTemplate.querySelector('input[name=price]');
-const timeIn = formTemplate.querySelector('select[name=timein]');
-const timeOut = formTemplate.querySelector('select[name=timeout]');
-const numberRooms = formTemplate.querySelector('select[name=rooms]');
-const numberGuests = formTemplate.querySelector('select[name=capacity]');
+const typeFlat = form.querySelector('select[name=type]');
+const price = form.querySelector('input[name=price]');
+const timeIn = form.querySelector('select[name=timein]');
+const timeOut = form.querySelector('select[name=timeout]');
+const numberRooms = form.querySelector('select[name=rooms]');
+const numberGuests = form.querySelector('select[name=capacity]');
 
 const activate = () => {
-  formTemplate.classList.remove('ad-form--disabled');
+  form.classList.remove('ad-form--disabled');
   mapFiltersTemplate.classList.remove('mapfilters--disabled');
-  formTemplate.querySelectorAll('fieldset, select').forEach(item => item.disabled = false);
+  form.querySelectorAll('fieldset, select').forEach(item => item.disabled = false);
   mapFiltersTemplate.querySelectorAll('select, fieldset').forEach(item => item.disabled = false);
 };
 
 const deactivate = () => {
-  formTemplate.classList.add('ad-form--disabled');
+  form.classList.add('ad-form--disabled');
   mapFiltersTemplate.classList.add('map__filters--disabled');
-  formTemplate.querySelectorAll('fieldset').forEach(item => item.disabled = true);
+  form.querySelectorAll('fieldset').forEach(item => item.disabled = true);
   mapFiltersTemplate.querySelectorAll('select, fieldset').forEach(item => item.disabled = true);
 };
 
@@ -34,8 +34,8 @@ const minPrice = {
 const setMinPrice = () => {
   const value = minPrice[typeFlat.value];
 
-  pricePerNight.setAttribute('min', value);
-  pricePerNight.setAttribute('placeholder', value);
+  price.setAttribute('min', value);
+  price.setAttribute('placeholder', value);
 };
 
 // заезд - выезд
@@ -83,8 +83,6 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   toSyncTimeIn();
 });
-
-const form = document.querySelector('.ad-form');
 
 const pristine = new pristine(form, {
   classTo: 'setup-wizard-form__element',
