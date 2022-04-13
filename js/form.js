@@ -51,29 +51,16 @@ const toSyncTimeIn = () => {
 const checkNumberOfGuestsAndRooms = () => {
   const roomsValue = parseInt(numberRooms.value, 10);
   const guestsValue = parseInt(numberGuests.value, 10);
-  console.log(roomsValue, guestsValue)
 
-  if (roomsValue === 1 && (guestsValue > 1 || guestsValue === 0)) {
-    numberGuests.setCustomValidity('Для 1 гостя');
-  } else if (roomsValue === 2 && (guestsValue > 2 || guestsValue === 0)) {
-    numberGuests.setCustomValidity('Для 2 или 1 гостя');
-  } else if (roomsValue === 3 && guestsValue === 0) {
-    numberGuests.setCustomValidity('Для 3 или 2 или 1 гостя');
+  if (roomsValue !== 100 && guestsValue === 0) {
+    numberGuests.setCustomValidity('Недостаточно гостей');
+  } else if (roomsValue < guestsValue) {
+    numberGuests.setCustomValidity('Гостей очень много');
   } else if (roomsValue === 100 && guestsValue !== 0) {
-    numberGuests.setCustomValidity('Не для гостей');
+    numberGuests.setCustomValidity('Данный вариант не для гостей');
   } else {
-    numberGuests.setCustomValidity('')
+    numberGuests.setCustomValidity('');
   }
-
-  // if (roomsValue !== 100 && guestsValue === 0) {
-  //   numberGuests.setCustomValidity('Недостаточно гостей');
-  // } else if (roomsValue < guestsValue) {
-  //   numberGuests.setCustomValidity('Гостей очень много');
-  // } else if (roomsValue === 100 && guestsValue !== 0) {
-  //   numberGuests.setCustomValidity('Данный вариант не для гостей');
-  // } else {
-  //   numberGuests.setCustomValidity('');
-  // }
 };
 
 // навешиваем обработчики
@@ -96,9 +83,6 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   toSyncTimeIn();
 });
-
-
-// deactivate();
 
 const form = document.querySelector('.ad-form');
 
